@@ -32,5 +32,6 @@ end
 
 hi = Helloworld.new
 hi.say_hello("@alterisian", "Málaga, Spain")
+hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
 
 #TODO - January - add your call to hi.say_hello above this line. Keep this line.
