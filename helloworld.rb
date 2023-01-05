@@ -2,6 +2,7 @@
 # Lets make the Mexican wave of ruby code.
 #
 # Usage: ruby helloworld.rb
+# Dependency: install ruby via https://www.ruby-lang.org
 #
 # Inspired by the likes of Woody Zuil and Bob Allen
 # who popularised mob programming, and introduced the world to
@@ -15,6 +16,9 @@
 # TODO - @alterisian : Add next_location to calculate where is next WEST from you using the previous contributions as a reference
 
 # Reference: https://twitter.com/alterisian/status/1610941873589477377
+
+# Last Thursday of the month. 16:00 CET (Spain/Germany) lets me at Wonder.me:
+# https://app.wonder.me/?spaceId=00b3a3a8-163a-4ae9-b5ec-7e9520e39862
 
 class Helloworld
   def initialize
