@@ -20,7 +20,7 @@ services:
 #  - postgres:latest
 
 variables:
-  POSTGRES_DB: database_name
+#  POSTGRES_DB: database_name
 
 # Cache gems in between builds
 cache:
@@ -46,10 +46,10 @@ rspec:
   script:
     - rspec spec
 
-rails:
-  variables:
+# rails:
+#  variables:
     # DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
-  script:
+#  script:
     # - rails db:migrate
     # - rails db:seed
     # - rails test
