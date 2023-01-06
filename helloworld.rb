@@ -2,8 +2,16 @@
 # Lets make the Mexican wave of ruby code.
 #
 # Usage: ruby helloworld.rb
+#
 # Dependency: install ruby via https://www.ruby-lang.org
 #
+# Process:
+#  create a local branch,
+#  add your line,
+#  run the script,
+#  commit and push.
+#  Create merge request (MR)
+
 # Inspired by the likes of Woody Zuil and Bob Allen
 # who popularised mob programming, and introduced the world to
 # global liquid mobs, lets try and create a global mob for ruby
@@ -34,6 +42,7 @@ hi = Helloworld.new
 hi.say_hello("@alterisian", "Málaga, Spain")
 hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
 hi.say_hello("@lucianghinda", "Bucharest, Romania")
+hi.say_hello("@bsilva96", "Machalí, Chile")
 hi.say_hello("@diazgdev", "Aguascalientes, México")
 
 #TODO - January - add your call to hi.say_hello above this line. Keep this line.
