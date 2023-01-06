@@ -23,9 +23,9 @@ variables:
 #  POSTGRES_DB: database_name
 
 # Cache gems in between builds
-cache:
-  paths:
-    - vendor/ruby
+# cache:
+#  paths:
+#    - vendor/ruby
 
 # This is a basic example for a gem or script which doesn't use
 # services such as redis or postgres
@@ -38,13 +38,17 @@ before_script:
   # - bundle install -j $(nproc)
 
 # Optional - Delete if not using `rubocop`
-rubocop:
-  script:
-    - rubocop
+# rubocop:
+#  script:
+#    - rubocop
 
-rspec:
+# rspec:
+#  script:
+#    - rspec spec
+
+test:
   script:
-    - rspec spec
+    - ruby helloworld.rb
 
 # rails:
 #  variables:
@@ -56,10 +60,10 @@ rspec:
 
 # This deploy job uses a simple deploy flow to Heroku, other providers, e.g. AWS Elastic Beanstalk
 # are supported too: https://github.com/travis-ci/dpl
-deploy:
-  stage: deploy
-  environment: production
-  script:
+# deploy:
+  # stage: deploy
+  # environment: production
+  # script:
     # - gem install dpl
     # - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_PRODUCTION_KEY
-    ruby helloworld.rb
+    # ruby helloworld.rb
