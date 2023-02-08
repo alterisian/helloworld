@@ -1,32 +1,23 @@
-# Hi from @alterisian in Málaga
-# Lets make the Mexican wave of ruby code.
-#
+# Goal: An active global group of rubyists working together
+
 # Usage: ruby helloworld.rb
-#
 # Dependency: install ruby via https://www.ruby-lang.org
-#
+
 # Process:
-#  create a local branch,
-#  add your line,
-#  run the script,
-#  commit and push.
-#  Create merge request (MR)
+#  fork the github repo: https://github.com/alterisian/helloworld
+#  add your line see bottom of helloworld.rb
+#  run the script: ruby helloworld.rb
+#  commit and push: git commit -am "adding my name" 
+#  Create pull request (PR) via your fork via the webbrowser at https://github.com
 
-# Inspired by the likes of Woody Zuil and Bob Allen
-# who popularised mob programming, and introduced the world to
+# WHY: Inspired by Bob Allen who introduced the world to
 # global liquid mobs, lets try and create a global mob for ruby
-
-# TODO: January. Add your say_hello line. Commit. Push.
-# Keep it as simple as possible in January's circumvention of the globe,
-# to make it as easy as possible for the next contributor.
-
-# TODO: February. Write what features you'd like us all to work on below.
-# TODO - @alterisian : Add next_location to calculate where is next WEST from you using the previous contributions as a reference
-
 # Reference: https://twitter.com/alterisian/status/1610941873589477377
 
-# Last Thursday of the month. 16:00 CET (Spain/Germany) lets me at Wonder.me:
-# https://app.wonder.me/?spaceId=00b3a3a8-163a-4ae9-b5ec-7e9520e39862
+# History: January. 6 people contributed bv adding their say_hello line to gitlab.
+# TODO: February. Add your say_hello line to github 
+
+# Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
 class Helloworld
   def initialize
@@ -47,5 +38,4 @@ hi.say_hello("@diazgdev", "Aguascalientes, México")
 hi.say_hello("@esquinas", "Málaga, Spain")
 hi.say_hello("@sidonath", "Málaga, Spain")
 
-# Just to have something to demonstrate the merge
-#TODO - January - add your call to hi.say_hello above this line. Keep this line.
+#TODO - February - add your call to hi.say_hello above this line. Keep this line.
