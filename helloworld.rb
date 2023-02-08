@@ -44,6 +44,7 @@ hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
 hi.say_hello("@lucianghinda", "Bucharest, Romania")
 hi.say_hello("@bsilva96", "Machalí, Chile")
 hi.say_hello("@diazgdev", "Aguascalientes, México")
+hi.say_hello("@esquinas", "Málaga, Spain")
 
 # Just to have something to demonstrate the merge
 #TODO - January - add your call to hi.say_hello above this line. Keep this line.
