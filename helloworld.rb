@@ -4,11 +4,11 @@
 # Dependency: install ruby via https://www.ruby-lang.org
 
 # Process:
-#  fork the github repo: https://github.com/alterisian/helloworld
-#  add your line see bottom of helloworld.rb
-#  run the script: ruby helloworld.rb
-#  commit and push: git commit -am "adding my name" 
-#  Create pull request (PR) via your fork via the webbrowser at https://github.com
+#  * use github web editor to edit: https://github.com/alterisian/helloworld/blob/main/helloworld.rb
+#    (which will fork the github repo: https://github.com/alterisian/helloworld to your user's account)
+#  * add your line see bottom of helloworld.rb
+#  * create a commit "adding my name" and select the 'Create a new branch for this commit and start a pull request' option
+#  * observe Github Action run the script: ruby helloworld.rb
 
 # WHY: Inspired by Bob Allen who introduced the world to
 # global liquid mobs, lets try and create a global mob for ruby
