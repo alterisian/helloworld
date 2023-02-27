@@ -39,6 +39,7 @@ hi.say_hello("@esquinas", "Málaga, Spain")
 hi.say_hello("@sidonath", "Málaga, Spain")
 hi.say_hello("@firedev", "Phuket, Thailand") 
 hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
+hi.say_hello("@georgy5", "Kaufbeuren, Germany")
 
 # TODO - February - add your call to hi.say_hello above this line. Keep this line.
 # TODO - March - Consider introducing the hometown as an additional argument?
