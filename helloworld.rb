@@ -15,17 +15,22 @@
 # Reference: https://twitter.com/alterisian/status/1610941873589477377
 
 # History: January. 6 people contributed bv adding their say_hello line to gitlab.
-# TODO: February. Add your say_hello line to github 
+# TODO: February. Add your say_hello line to github
 
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
 class Helloworld
+  @everybody = nil
   def initialize
     puts "Hi from:"
+    @everybody = []
   end
 
   def say_hello(person, location)
     puts "#{person}, #{location}"
+  end
+
+  def output
   end
 end
 
@@ -37,9 +42,10 @@ hi.say_hello("@bsilva96", "Machalí, Chile")
 hi.say_hello("@diazgdev", "Aguascalientes, México")
 hi.say_hello("@esquinas", "Málaga, Spain")
 hi.say_hello("@sidonath", "Málaga, Spain")
-hi.say_hello("@firedev", "Phuket, Thailand") 
+hi.say_hello("@firedev", "Phuket, Thailand")
 hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
 hi.say_hello("@georgy5", "Kaufbeuren, Germany")
+hi.say_hello("@twobbler", "Antwerp, Belgium")
 
 # TODO - February - add your call to hi.say_hello above this line. Keep this line.
 # TODO - March - Consider introducing the hometown as an additional argument?
