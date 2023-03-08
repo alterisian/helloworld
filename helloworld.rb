@@ -18,6 +18,7 @@
 # TODO: February. 4 more contributed to github. We lost CI though?
 # TODO: March. Maybe we can refactor so the output is split with everyone
 # listed, but the next 3 west of a handle are first? To be more tweetable.
+#  - Consider introducing the hometown as an additional argument?
 
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
@@ -47,6 +48,7 @@ class Helloworld
 end
 
 hi = Helloworld.new
+
 hi.say_hello("@alterisian", "Málaga, Spain")
 hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
 hi.say_hello("@lucianghinda", "Bucharest, Romania")
@@ -58,9 +60,8 @@ hi.say_hello("@firedev", "Phuket, Thailand")
 hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
 hi.say_hello("@georgy5", "Kaufbeuren, Germany")
 hi.say_hello("@twobbler", "Antwerp, Belgium")
+hi.say_hello("@amosdalmeri", "Brescia, Italy")
+
 hi.output
 
-
-# TODO - March
-#  - Can we split the output to be show the first 3, that are west of a handle?
-#  - Consider introducing the hometown as an additional argument?
+# TODO - March - if new add a call above to hi.say_hello for yourself.
