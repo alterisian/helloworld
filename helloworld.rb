@@ -15,22 +15,34 @@
 # Reference: https://twitter.com/alterisian/status/1610941873589477377
 
 # History: January. 6 people contributed bv adding their say_hello line to gitlab.
-# TODO: February. Add your say_hello line to github
+# TODO: February. 4 more contributed to github. We lost CI though?
+# TODO: March. Maybe we can refactor so the output is split with everyone
+# listed, but the next 3 west of a handle are first? To be more tweetable.
 
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
 class Helloworld
-  @everybody = nil
+  @everyone = nil
+
   def initialize
-    puts "Hi from:"
-    @everybody = []
+    @everyone = []
+    puts "helloworld.rb - the global ruby mob"
+    puts "..."
+    puts "Don't forget to bundle for geocoding!"
+    puts "LETS GO..."
+    puts "  "
   end
 
   def say_hello(person, location)
-    puts "#{person}, #{location}"
+    @everyone << "#{person}, #{location}"
   end
 
-  def output
+  def output(handle="@alterisian")
+    puts west_of(handle)
+  end
+
+  def west_of(handle)
+    puts @everyone
   end
 end
 
@@ -46,6 +58,9 @@ hi.say_hello("@firedev", "Phuket, Thailand")
 hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
 hi.say_hello("@georgy5", "Kaufbeuren, Germany")
 hi.say_hello("@twobbler", "Antwerp, Belgium")
+hi.output
 
-# TODO - February - add your call to hi.say_hello above this line. Keep this line.
-# TODO - March - Consider introducing the hometown as an additional argument?
+
+# TODO - March
+#  - Can we split the output to be show the first 3, that are west of a handle?
+#  - Consider introducing the hometown as an additional argument?
