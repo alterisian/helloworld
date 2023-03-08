@@ -1,16 +1,28 @@
 require 'geocoder'
 
-locations = ["Málaga, Spain", "Barra Velha, Brazil", "Bucharest, Romania", "Machalí, Chile", "Aguascalientes, México"]
+people = Hash.new
 
-locations.each do |l|
-  results = Geocoder.search l
-  puts l+" : "+results.first.coordinates
+people["@alterisian"] = { location: "Málaga, Spain" }
+people["@CelsoDeSa"] = { location: "Barra Velha, Brazil" }
+people["@lucianghinda"] = { location: "Bucharest, Romania" }
+people["@bsilva96"] = { location: "Machalí, Chile" }
+people["@diazgdev"] = { location: "Aguascalientes, México" }
+people["@esquinas"] = { location: "Málaga, Spain" }
+people["@sidonath"] = { location: "Málaga, Spain" }
+people["@firedev"] = { location: "Phuket, Thailand" }
+people["@theOnlyMaDDogx"] = { location: "New Delhi, India" }
+people["@georgy5"] = { location: "Kaufbeuren, Germany" }
+people["@twobbler"] = { location: "Antwerp, Belgium" }
+
+puts '{'
+puts '"people": ['
+people.each do |person, details|
+  results = Geocoder.search details[:location]
+  people[person][geo: results.first.coordinates]
+  puts '{ "name": "'+person+'",
+    "latitude": '+results.first.coordinates.first.to_s+',
+    "longitude": '+results.first.coordinates.last.to_s+'
+   },'
 end
-
-def where_is(location)
-  (lat,lng) = geo location
-end
-
-results = Geocoder.search("Machalí, Chile")
-h = Hash.new
-h["diazgdev"] = { name: "Aguascalientes, México", geo: results.first.coordinates}
+puts ' ] '
+puts '}'
