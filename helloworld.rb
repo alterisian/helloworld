@@ -22,6 +22,9 @@
 
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
+require 'geocoder'
+require_relative 'person'
+
 class Helloworld
   @everyone = nil
 
@@ -34,16 +37,35 @@ class Helloworld
     puts "  "
   end
 
-  def say_hello(person, location)
-    @everyone << "#{person}, #{location}"
+  def say_hello(handle, location)    
+    @everyone << Person.new(handle, location, get_coordinates(location) )
+  end
+
+  def get_coordinates(location)
+    results = Geocoder.search location
+    results.first.coordinates
   end
 
   def output(handle="@alterisian")
     puts west_of(handle)
   end
 
+  # Latitudes are horizontal lines that measure distance north or south
+  # of the equator. Longitudes are vertical lines.
+  # Longitutde with a negative is western, positive is eastern.
   def west_of(handle)
-    puts @everyone
+    person = @everyone.find {|person| true if person.name==handle }
+    if person
+      handle_latitude = person.coordinates.first
+    end
+    @west_of=[]
+    @everyone.each do |person|
+      if person.coordinates.first < handle_latitude
+        @west_of << person.to_s
+      end
+    end
+
+    @west_of
   end
 end
 
