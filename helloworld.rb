@@ -23,6 +23,7 @@
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
 require 'geocoder'
+require 'byebug'
 require_relative 'person'
 
 class Helloworld
@@ -58,32 +59,36 @@ class Helloworld
     if person
       handle_latitude = person.coordinates.first
     end
-    @west_of=[]
+    @west_of=[]    
     @everyone.each do |person|
       if person.coordinates.first < handle_latitude
         @west_of << person.to_s
       end
+      byebug
     end
 
     @west_of
   end
 end
 
-hi = Helloworld.new
+if $0 == __FILE__
+  hi = Helloworld.new
 
-hi.say_hello("@alterisian", "Málaga, Spain")
-hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
-hi.say_hello("@lucianghinda", "Bucharest, Romania")
-hi.say_hello("@bsilva96", "Machalí, Chile")
-hi.say_hello("@diazgdev", "Aguascalientes, México")
-hi.say_hello("@esquinas", "Málaga, Spain")
-hi.say_hello("@sidonath", "Málaga, Spain")
-hi.say_hello("@firedev", "Phuket, Thailand")
-hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
-hi.say_hello("@georgy5", "Kaufbeuren, Germany")
-hi.say_hello("@twobbler", "Antwerp, Belgium")
-hi.say_hello("@amosdalmeri", "Brescia, Italy")
-
-hi.output
-
-# TODO - March - if new add a call above to hi.say_hello for yourself.
+  hi.say_hello("@alterisian", "Málaga, Spain")
+  hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
+  hi.say_hello("@lucianghinda", "Bucharest, Romania")
+  hi.say_hello("@bsilva96", "Machalí, Chile")
+  hi.say_hello("@diazgdev", "Aguascalientes, México")
+  hi.say_hello("@esquinas", "Málaga, Spain")
+  hi.say_hello("@sidonath", "Málaga, Spain")
+  hi.say_hello("@firedev", "Phuket, Thailand")
+  hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
+  hi.say_hello("@georgy5", "Kaufbeuren, Germany")
+  hi.say_hello("@twobbler", "Antwerp, Belgium")
+  hi.say_hello("@amosdalmeri", "Brescia, Italy")
+  
+  hi.output
+  
+  # TODO - March - if new add a call above to hi.say_hello for yourself.
+  
+end
