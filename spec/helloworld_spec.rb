@@ -25,8 +25,15 @@ describe Helloworld do
       expect( helloworld.west_of("@theOnlyMaDDogx") ).to eq(["@alterisian, Málaga, Spain", "@bsilva96, Machalí, Chile", "@lucianghinda, Bucharest, Romania"])
     end
 
-    it do
-      expect( helloworld.generate_tweet ).to eq(<<~TWEET.join)
+    it 'generates tweetable output' do
+      helloworld = Helloworld.new
+      helloworld.say_hello("@theOnlyMaDDogx", "New Delhi, India")
+      helloworld.say_hello("@alterisian", "Málaga, Spain")
+      helloworld.say_hello("@bsilva96", "Machalí, Chile")
+      helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
+      people_west_of = helloworld.west_of("@theOnlyMaDDogx")
+
+      expect( helloworld.generate_tweet(people_west_of) ).to eq(<<~TWEET.join)
         Hey @alterisian, @bsilva96, @lucianghinda, #helloworld_rb is almost finished in New Delhi, India.
         Can we hand over the work to you?
         Join https://meet.jit.si/TodayMálagaTomorrowWeMake!

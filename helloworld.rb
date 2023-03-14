@@ -70,7 +70,7 @@ class Helloworld
     @west_of
   end
 
-  def get_handles(people_west_of)
+  def generate_tweet(people_west_of)
     output = "Hey HANDLE, HANDLE, HANDLE, the helloworld.rb is almost finished in LOCATION4, can we hand over the work to you? Join this URL!"
   end
 end
