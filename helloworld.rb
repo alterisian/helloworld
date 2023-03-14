@@ -57,17 +57,21 @@ class Helloworld
   def west_of(handle)
     person = @everyone.find {|person| true if person.name==handle }
     if person
-      handle_latitude = person.coordinates.first
+      handle_longitutde = person.coordinates.last
     end
     @west_of=[]    
     @everyone.each do |person|
-      if person.coordinates.first < handle_latitude
+      if person.coordinates.last < handle_longitutde
         @west_of << person.to_s
       end
-      byebug
+      # byebug
     end
 
     @west_of
+  end
+
+  def get_handles(people_west_of)
+    output = "Hey HANDLE, HANDLE, HANDLE, the helloworld.rb is almost finished in LOCATION4, can we hand over the work to you? Join this URL!"
   end
 end
 
