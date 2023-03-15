@@ -27,6 +27,7 @@ require 'byebug'
 require_relative 'person'
 
 class Helloworld
+  VIDEO_CHAT_URL = "https://meet.jit.si/TodayMálagaTomorrowWeMake"
   @everyone = nil
 
   def initialize
@@ -48,7 +49,7 @@ class Helloworld
   end
 
   def output(handle="@alterisian")
-    puts west_of(handle)
+    puts generate_tweet(west_of(handle), "Málaga, Spain")
   end
 
   # Latitudes are horizontal lines that measure distance north or south
@@ -70,8 +71,15 @@ class Helloworld
     @west_of
   end
 
-  def generate_tweet(people_west_of)
-    output = "Hey HANDLE, HANDLE, HANDLE, the helloworld.rb is almost finished in LOCATION4, can we hand over the work to you? Join this URL!"
+  def generate_tweet(people_west_of, location)
+    handles = people_west_of.reduce("") do |acc, current_value|
+      acc += "#{current_value.split(',').first}, "
+    end
+    <<~TWEET
+      Hey #{handles.chomp(' ')} #helloworld_rb is almost finished in #{location}.
+      Can we hand over the mob to you?
+      Join #{VIDEO_CHAT_URL}
+    TWEET
   end
 end
 

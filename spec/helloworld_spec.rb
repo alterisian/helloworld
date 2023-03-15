@@ -32,12 +32,14 @@ describe Helloworld do
       helloworld.say_hello("@bsilva96", "Machalí, Chile")
       helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
       people_west_of = helloworld.west_of("@theOnlyMaDDogx")
+      location = "New Delhi, India"
 
-      expect( helloworld.generate_tweet(people_west_of) ).to eq(<<~TWEET.join)
+      expect( helloworld.generate_tweet(people_west_of, location) ).to eq(<<~TWEET
         Hey @alterisian, @bsilva96, @lucianghinda, #helloworld_rb is almost finished in New Delhi, India.
-        Can we hand over the work to you?
-        Join https://meet.jit.si/TodayMálagaTomorrowWeMake!
+        Can we hand over the mob to you?
+        Join https://meet.jit.si/TodayMálagaTomorrowWeMake
       TWEET
+      )
     end
   end
 end
