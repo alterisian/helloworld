@@ -99,6 +99,7 @@ if $0 == __FILE__
   hi.say_hello("@georgy5", "Kaufbeuren, Germany")
   hi.say_hello("@twobbler", "Antwerp, Belgium")
   hi.say_hello("@amosdalmeri", "Brescia, Italy")
+  hi.say_hello("@_jidemuritala", "Reus, Spain")
   
   hi.output
   
