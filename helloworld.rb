@@ -79,6 +79,7 @@ class Helloworld
       Hey #{handles.chomp(' ')} #helloworld_rb is almost finished in #{location}.
       Can we hand over the mob to you?
       Join #{VIDEO_CHAT_URL}
+      Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
     TWEET
   end
 end
