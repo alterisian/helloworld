@@ -38,6 +38,7 @@ describe Helloworld do
         Hey @alterisian, @bsilva96, @lucianghinda, #helloworld_rb is almost finished in New Delhi, India.
         Can we hand over the mob to you?
         Join https://meet.jit.si/TodayMálagaTomorrowWeMake
+        Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
       TWEET
       )
     end
