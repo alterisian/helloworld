@@ -1,4 +1,10 @@
 require_relative "../helloworld.rb"
+require 'vcr'
+
+VCR.configure do |config|
+  config.cassette_library_dir = "fixtures/vcr_cassettes"
+  config.hook_into :webmock
+end
 
 describe Helloworld do
   it "displays a name." do
@@ -8,11 +14,13 @@ describe Helloworld do
 
   context '#west_of' do
     it "shows location is west of another" do
-      helloworld = Helloworld.new
-      helloworld.say_hello("@alterisian", "Málaga, Spain")
-      helloworld.say_hello("@bsilva96", "Machalí, Chile")    
+      VCR.use_cassette("west_of_shows_location_is_west_of_another") do
+        helloworld = Helloworld.new
+        helloworld.say_hello("@alterisian", "Málaga, Spain")
+        helloworld.say_hello("@bsilva96", "Machalí, Chile")    
 
-      expect( helloworld.west_of("@alterisian") ).to eq(["@bsilva96, Machalí, Chile"])
+        expect( helloworld.west_of("@alterisian") ).to eq(["@bsilva96, Machalí, Chile"])  
+      end
     end
 
     it 'returns three people west of a given person' do
