@@ -27,7 +27,8 @@ require 'byebug'
 require_relative 'person'
 
 class Helloworld
-  VIDEO_CHAT_URL = "https://meet.jit.si/TodayMálagaTomorrowWeMake"
+  VIDEO_CHAT_URL = "https://meet.jit.si/TodayMálagaTomorrowWeMake".freeze
+  TWEET_CHARACTER_LIMIT = 280
   @everyone = nil
 
   def initialize
