@@ -7,10 +7,6 @@ VCR.configure do |config|
 end
 
 describe Helloworld do
-  it "displays a name." do
-    # helloworld = Helloworld.new
-    # expect()
-  end
 
   context '#west_of' do
     it "shows location is west of another" do
@@ -45,12 +41,13 @@ describe Helloworld do
         people_west_of = helloworld.west_of("@theOnlyMaDDogx")
         location = "New Delhi, India"
 
-        expected_tweet = %{Hey @alterisian, @bsilva96, @lucianghinda, #helloworld_rb is almost finished in New Delhi, India.
-Can we hand over the mob to you?
-Join https://meet.jit.si/TodayMálagaTomorrowWeMake
-Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
-}
-        expect(helloworld.generate_tweet(people_west_of, location) ).to eq expected_tweet
+        expect( helloworld.generate_tweet(people_west_of, location) ).to eq(<<~TWEET
+          Hey @alterisian, @bsilva96, @lucianghinda, #helloworld_rb is almost finished in New Delhi, India.
+          Can we hand over the mob to you?
+          Join https://meet.jit.si/TodayMálagaTomorrowWeMake
+          Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
+        TWEET
+        )        
       end
     end
   end
