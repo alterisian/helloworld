@@ -7,6 +7,7 @@
 #  * use github web editor to edit: https://github.com/alterisian/helloworld/blob/main/helloworld.rb
 #    (which will fork the github repo: https://github.com/alterisian/helloworld to your user's account)
 #  * add your line see bottom of helloworld.rb
+#  * eg, Twitter handle and location
 #  * create a commit "adding my name" and select the 'Create a new branch for this commit and start a pull request' option
 #  * observe Github Action run the script: ruby helloworld.rb
 
@@ -97,7 +98,7 @@ if $0 == __FILE__
   hi.say_hello("@sidonath", "Málaga, Spain")
   hi.say_hello("@firedev", "Phuket, Thailand")
   hi.say_hello("@theOnlyMaDDogx", "New Delhi, India")
-  hi.say_hello("@georgy5", "Kaufbeuren, Germany")
+  hi.say_hello("@karlos_georgy", "Kaufbeuren, Germany")
   hi.say_hello("@twobbler", "Antwerp, Belgium")
   hi.say_hello("@amosdalmeri", "Brescia, Italy")
   hi.say_hello("@_jidemuritala", "Reus, Spain")
@@ -106,6 +107,7 @@ if $0 == __FILE__
   
   hi.output
   
-  # TODO - March - if new add a call above to hi.say_hello for yourself.
+  # TODO - April - if new add a call above to hi.say_hello for yourself.
+  # eg, Twitter handle and location
   
 end
