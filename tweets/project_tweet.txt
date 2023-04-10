@@ -1,0 +1,9 @@
+Introducing #helloworld_rb
+
+Our code is at: https://github.com/alterisian/helloworld/blob/main/helloworld.rb
+
+jitsi channel is: https://meet.jit.si/TodayM%C3%A1lagaTomorrowWeMake
+
+The @mobtime_app is: https://mobti.me/TodayM%C3%A1lagaTomorrowWeMake
+
+Welcome comments & participation from the (ruby) community :)

@@ -15,10 +15,12 @@
 # global liquid mobs, lets try and create a global mob for ruby
 # Reference: https://twitter.com/alterisian/status/1610941873589477377
 
-# History: January. 6 people contributed bv adding their say_hello line to gitlab.
-# TODO: February. 4 more contributed to github. We lost CI though?
-# TODO: March. Maybe we can refactor so the output is split with everyone
+# History:
+# January. 6 people contributed bv adding their say_hello line to gitlab.
+# February. 4 more contributed to github. We lost CI though?
+# March. Maybe we can refactor so the output is split with everyone
 # listed, but the next 3 west of a handle are first? To be more tweetable.
+# April. Continue to include more people around the world, and work on handovers.
 #  - Consider introducing the hometown as an additional argument?
 
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
@@ -29,19 +31,20 @@ require_relative 'person'
 
 class Helloworld
   VIDEO_CHAT_URL = "https://meet.jit.si/TodayMálagaTomorrowWeMake".freeze
+  AVAILABILITY_FORM_LINK = "https://forms.gle/TE7GuW2KNjEJLtLx7".freeze
   TWEET_CHARACTER_LIMIT = 280
   @everyone = nil
 
   def initialize
     @everyone = []
-    puts "helloworld.rb - the global ruby mob"
-    puts "..."
+    puts "#helloworld_rb - the global ruby mob"
+    puts ""
     puts "Don't forget to bundle for geocoding!"
     puts "LETS GO..."
     puts "  "
   end
 
-  def say_hello(handle, location)    
+  def say_hello(handle, location)
     @everyone << Person.new(handle, location, get_coordinates(location) )
   end
 
@@ -51,23 +54,24 @@ class Helloworld
   end
 
   def output(handle="@alterisian")
+    puts "--west_of tweet"
     puts generate_tweet(west_of(handle), "Málaga, Spain")
+    puts "--availability tweet"
+    puts generate_availability_tweet
   end
 
-  # Latitudes are horizontal lines that measure distance north or south
-  # of the equator. Longitudes are vertical lines.
-  # Longitutde with a negative is western, positive is eastern.
+  # Latitudes are horizontal lines that measure distance north or south of the equator
+  # Longitudes are vertical lines. Longitutde with a negative is western, positive is eastern
   def west_of(handle)
     person = @everyone.find {|person| true if person.name==handle }
     if person
       handle_longitutde = person.coordinates.last
     end
-    @west_of=[]    
+    @west_of=[]
     @everyone.each do |person|
       if person.coordinates.last < handle_longitutde
         @west_of << person.to_s
       end
-      # byebug
     end
 
     @west_of
@@ -82,6 +86,22 @@ class Helloworld
       Can we hand over the mob to you?
       Join #{VIDEO_CHAT_URL}
       Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
+    TWEET
+  end
+
+  def generate_availability_tweet
+    handles = ""
+
+    @everyone.each do |person|
+      handles += "#{person.name} "
+    end
+
+    <<~TWEET
+      Hey, look forward to seeing you in #helloworld_rb this week.
+      Even if it's only an hour.
+      Can you estimate when you are available in your timezone in this form:
+      #{AVAILABILITY_FORM_LINK}
+      #{handles}
     TWEET
   end
 end
@@ -104,10 +124,10 @@ if $0 == __FILE__
   hi.say_hello("@_jidemuritala", "Reus, Spain")
   hi.say_hello("@mmiy55", "Osaka, Japan")
   hi.say_hello("@j3nnn1", "Ciudad Autónoma de Buenos Aires, Argentina")
-  
+
   hi.output
-  
+
   # TODO - April - if new add a call above to hi.say_hello for yourself.
   # eg, Twitter handle and location
-  
+
 end

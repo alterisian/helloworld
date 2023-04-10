@@ -13,9 +13,9 @@ describe Helloworld do
       VCR.use_cassette("west_of_shows_location_is_west_of_another") do
         helloworld = Helloworld.new
         helloworld.say_hello("@alterisian", "Málaga, Spain")
-        helloworld.say_hello("@bsilva96", "Machalí, Chile")    
+        helloworld.say_hello("@bsilva96", "Machalí, Chile")
 
-        expect( helloworld.west_of("@alterisian") ).to eq(["@bsilva96, Machalí, Chile"])  
+        expect( helloworld.west_of("@alterisian") ).to eq(["@bsilva96, Machalí, Chile"])
       end
     end
 
@@ -47,11 +47,11 @@ describe Helloworld do
           Join https://meet.jit.si/TodayMálagaTomorrowWeMake
           Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
         TWEET
-        )        
+        )
       end
     end
   end
-  
+
   context '#generate_tweet' do
     it 'limits the tweetable output to 280 characters' do
       VCR.use_cassette("generate_tweet_limits_the_tweetable_outpot_to_280_characters") do
@@ -62,10 +62,33 @@ describe Helloworld do
         helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
         people_west_of = helloworld.west_of("@theOnlyMaDDogx")
         location = "New Delhi, India"
-        
+
         tweet = helloworld.generate_tweet(people_west_of, location).gsub("\n", '')
         expect(tweet.size).to be <= Helloworld::TWEET_CHARACTER_LIMIT
       end
     end
   end
+
+  context '#ask_availability' do
+    it 'includes all the twitter handles in tweetable format' do
+      VCR.use_cassette("includes_all_the_twitter_handles_in_tweetable_format") do
+        helloworld = Helloworld.new
+        helloworld.say_hello("@theOnlyMaDDogx", "New Delhi, India")
+        helloworld.say_hello("@alterisian", "Málaga, Spain")
+        helloworld.say_hello("@bsilva96", "Machalí, Chile")
+        helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
+
+        tweet = helloworld.generate_availability_tweet
+
+        puts "The availability tweet looks like:"
+        puts tweet
+
+        expect(tweet).to include('@theOnlyMaDDogx')
+        expect(tweet).to include('@alterisian')
+        expect(tweet).to include('@bsilva96')
+        expect(tweet).to include('@lucianghinda')
+      end
+    end
+  end
+
 end
