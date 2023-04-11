@@ -124,6 +124,7 @@ if $0 == __FILE__
   hi.say_hello("@_jidemuritala", "Reus, Spain")
   hi.say_hello("@mmiy55", "Osaka, Japan")
   hi.say_hello("@j3nnn1", "Ciudad Autónoma de Buenos Aires, Argentina")
+  hi.say_hello("@lamalotos", "Dubai, United Arab Emirates")
 
   hi.output
 
