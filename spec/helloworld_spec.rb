@@ -93,22 +93,22 @@ describe Helloworld do
         helloworld.say_hello("@mmiy55", "Osaka, Japan")
         helloworld.say_hello("@j3nnn1", "Ciudad Autónoma de Buenos Aires, Argentina")
 
-        tweet = helloworld.generate_availability_tweet
-        initial_tweet, reply_tweet = tweet.slice(0...Helloworld::TWEET_CHARACTER_LIMIT), tweet.slice(Helloworld::TWEET_CHARACTER_LIMIT+1...tweet.length)
+        tweet = helloworld.generate_availability_tweets
+        #initial_tweet, reply_tweet = tweet.slice(0...Helloworld::TWEET_CHARACTER_LIMIT), tweet.slice(Helloworld::TWEET_CHARACTER_LIMIT+1...tweet.length)
 
         puts "The availability tweet part 1 looks like:"
-        puts initial_tweet
+        puts tweet[0]
         puts "The availability tweet part 2 looks like:"
-        puts reply_tweet
+        puts tweet[1] unless tweet[1].nil?
 
-        expect(initial_tweet.size).to be <= Helloworld::TWEET_CHARACTER_LIMIT
+        expect(tweet[0].size).to be <= Helloworld::TWEET_CHARACTER_LIMIT
 
-        expect(initial_tweet).to include('@theOnlyMaDDogx')
-        expect(initial_tweet).to include('@alterisian')
-        expect(initial_tweet).to include('@bsilva96')
-        expect(initial_tweet).to include('@lucianghinda')
+        expect(tweet[0]).to include('@theOnlyMaDDogx')
+        expect(tweet[0]).to include('@alterisian')
+        expect(tweet[0]).to include('@bsilva96')
+        expect(tweet[0]).to include('@lucianghinda')
 
-        expect(reply_tweet).to include('@j3nnn1___')        
+        expect(tweet[1]).to include('@j3nnn1')        
       end
     end
   end
