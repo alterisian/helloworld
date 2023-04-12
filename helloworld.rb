@@ -34,9 +34,11 @@ class Helloworld
   AVAILABILITY_FORM_LINK = "https://forms.gle/TE7GuW2KNjEJLtLx7".freeze
   TWEET_CHARACTER_LIMIT = 280
   @everyone = nil
+  @geolocation = false
 
-  def initialize
+  def initialize(geolocation=true)
     @everyone = []
+    @geolocation = geolocation
     puts "#helloworld_rb - the global ruby mob"
     puts ""
     puts "Don't forget to bundle for geocoding!"
@@ -45,7 +47,11 @@ class Helloworld
   end
 
   def say_hello(handle, location)
-    @everyone << Person.new(handle, location, get_coordinates(location) )
+    if @geolocation
+      @everyone << Person.new(handle, location, get_coordinates(location) )
+    else
+      @everyone << Person.new(handle, location, nil)
+    end
   end
 
   def get_coordinates(location)
@@ -57,7 +63,8 @@ class Helloworld
     puts "--west_of tweet"
     puts generate_tweet(west_of(handle), "Málaga, Spain")
     puts "--availability tweet"
-    puts generate_availability_tweet
+    puts "1:"+generate_availability_tweets[0]
+    puts "2:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
   end
 
   # Latitudes are horizontal lines that measure distance north or south of the equator
@@ -87,6 +94,27 @@ class Helloworld
       Join #{VIDEO_CHAT_URL}
       Please fill out the following form to share your availability: https://forms.gle/BxVGGFqCxJd1i9w88
     TWEET
+  end
+
+  def split_string(str)
+    if str.length <= TWEET_CHARACTER_LIMIT
+      return [str]
+    else
+      first_part = str[0..(TWEET_CHARACTER_LIMIT-1)]
+      last_space_index = first_part.rindex(/\s/)
+      if last_space_index.nil? || last_space_index == 0
+        # no space found or space is at the beginning of the string
+        return [first_part, str[TWEET_CHARACTER_LIMIT..-1]]
+      else
+        # split the string at the last space before 280 characters
+        return [str[0..last_space_index-1], str[last_space_index+1..-1]]
+      end
+    end
+  end
+
+  def generate_availability_tweets
+    long_tweet = generate_availability_tweet
+    split_string(long_tweet)
   end
 
   def generate_availability_tweet

@@ -72,21 +72,43 @@ describe Helloworld do
   context '#ask_availability' do
     it 'includes all the twitter handles in tweetable format' do
       VCR.use_cassette("includes_all_the_twitter_handles_in_tweetable_format") do
-        helloworld = Helloworld.new
+        helloworld = Helloworld.new(false)
         helloworld.say_hello("@theOnlyMaDDogx", "New Delhi, India")
         helloworld.say_hello("@alterisian", "Málaga, Spain")
         helloworld.say_hello("@bsilva96", "Machalí, Chile")
         helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
 
-        tweet = helloworld.generate_availability_tweet
+        helloworld.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
+        helloworld.say_hello("@bsilva96", "Machalí, Chelloworldle")
 
-        puts "The availability tweet looks like:"
-        puts tweet
+        helloworld.say_hello("@diazgdev", "Aguascalientes, México")
+        helloworld.say_hello("@esquinas", "Málaga, Spain")
+        helloworld.say_hello("@sidonath", "Málaga, Spain")
+        helloworld.say_hello("@firedev", "Phuket, Thailand")
+        helloworld.say_hello("@theOnlyMaDDogx", "New Delhelloworld, India")
+        helloworld.say_hello("@karlos_georgy", "Kaufbeuren, Germany")
+        helloworld.say_hello("@twobbler", "Antwerp, Belgium")
+        helloworld.say_hello("@amosdalmeri", "Brescia, Italy")
+        helloworld.say_hello("@_jidemuritala", "Reus, Spain")
+        helloworld.say_hello("@mmiy55", "Osaka, Japan")
+        helloworld.say_hello("@j3nnn1", "Ciudad Autónoma de Buenos Aires, Argentina")
 
-        expect(tweet).to include('@theOnlyMaDDogx')
-        expect(tweet).to include('@alterisian')
-        expect(tweet).to include('@bsilva96')
-        expect(tweet).to include('@lucianghinda')
+        tweet = helloworld.generate_availability_tweets
+        #initial_tweet, reply_tweet = tweet.slice(0...Helloworld::TWEET_CHARACTER_LIMIT), tweet.slice(Helloworld::TWEET_CHARACTER_LIMIT+1...tweet.length)
+
+        puts "The availability tweet part 1 looks like:"
+        puts tweet[0]
+        puts "The availability tweet part 2 looks like:"
+        puts tweet[1] unless tweet[1].nil?
+
+        expect(tweet[0].size).to be <= Helloworld::TWEET_CHARACTER_LIMIT
+
+        expect(tweet[0]).to include('@theOnlyMaDDogx')
+        expect(tweet[0]).to include('@alterisian')
+        expect(tweet[0]).to include('@bsilva96')
+        expect(tweet[0]).to include('@lucianghinda')
+
+        expect(tweet[1]).to include('@j3nnn1')        
       end
     end
   end
