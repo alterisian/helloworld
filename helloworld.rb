@@ -97,14 +97,14 @@ class Helloworld
   end
 
   def split_string(str)
-    if str.length <= 280
+    if str.length <= TWEET_CHARACTER_LIMIT
       return [str]
     else
-      first_part = str[0..279]
+      first_part = str[0..(TWEET_CHARACTER_LIMIT-1)]
       last_space_index = first_part.rindex(/\s/)
       if last_space_index.nil? || last_space_index == 0
         # no space found or space is at the beginning of the string
-        return [first_part, str[280..-1]]
+        return [first_part, str[TWEET_CHARACTER_LIMIT..-1]]
       else
         # split the string at the last space before 280 characters
         return [str[0..last_space_index-1], str[last_space_index+1..-1]]
