@@ -26,7 +26,7 @@
 # Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
 
 require 'geocoder'
-require 'byebug'
+require 'tzf'
 require_relative 'person'
 
 class Helloworld
@@ -48,15 +48,22 @@ class Helloworld
 
   def say_hello(handle, location)
     if @geolocation
-      @everyone << Person.new(handle, location, get_coordinates(location) )
+      coordinates = get_coordinates(location)
+      timezone = get_timezone(coordinates)
+      @everyone << Person.new(handle, location, coordinates, timezone)
     else
-      @everyone << Person.new(handle, location, nil)
+      @everyone << Person.new(handle, location, nil, nil)
     end
   end
 
   def get_coordinates(location)
     results = Geocoder.search location
     results.first.coordinates
+  end
+
+  # @param [Array] coordinates
+  def get_timezone(coordinates)
+    TZF.tz_name(*coordinates)
   end
 
   def output(handle="@alterisian")
@@ -82,6 +89,16 @@ class Helloworld
     end
 
     @west_of
+  end
+
+  def in_timezone_of(handle)
+    person = @everyone.find { |person| person.name == handle }
+    if person
+      timezone = person.timezone
+    end
+    @everyone.filter do |person|
+      person.timezone == timezone
+    end
   end
 
   def generate_tweet(people_west_of, location)
