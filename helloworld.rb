@@ -96,9 +96,8 @@ class Helloworld
     if person
       timezone = person.timezone
     end
-    @everyone.filter do |person|
-      person.timezone == timezone
-    end
+    @everyone.filter { |person| person.timezone == timezone }
+             .map { |person| person.name }
   end
 
   def generate_tweet(people_west_of, location)
