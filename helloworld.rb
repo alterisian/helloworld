@@ -36,7 +36,7 @@ class Helloworld
   @everyone = nil
   @geolocation = false
 
-  def initialize(geolocation=true)
+  def initialize(geolocation=true, type="all", twitter_api_key=nil)
     @everyone = []
     @geolocation = geolocation
     puts "#helloworld_rb - the global ruby mob"
@@ -62,7 +62,7 @@ class Helloworld
   def output(handle="@alterisian")
     puts "--west_of tweet"
     puts generate_tweet(west_of(handle), "Málaga, Spain")
-    puts "--availability tweet"
+    puts "\n--availability tweet\n"
     puts "1:"+generate_availability_tweets[0]
     puts "2:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
   end
