@@ -1,4 +1,4 @@
-Person = Struct.new(:name, :location, :coordinates) do
+Person = Struct.new(:name, :location, :coordinates, :timezone) do
   def to_s
     "#{name}, #{location}"
   end

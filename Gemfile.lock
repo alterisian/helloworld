@@ -10,6 +10,7 @@ GEM
     geocoder (1.8.1)
     hashdiff (1.0.1)
     public_suffix (5.0.1)
+    rb_sys (0.9.71)
     rexml (3.2.5)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
@@ -24,6 +25,8 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
+    tzf (0.2.5)
+      rb_sys (~> 0.9)
     vcr (6.1.0)
     webmock (3.18.1)
       addressable (>= 2.8.0)
@@ -37,6 +40,7 @@ DEPENDENCIES
   byebug
   geocoder
   rspec
+  tzf
   vcr
   webmock
 
