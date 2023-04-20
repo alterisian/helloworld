@@ -1,10 +1,10 @@
 # helloworld_rb
 
-Lets get the ruby world collaborating all around the world.\
+Lets get the ruby world collaborating all around the globe.\
 First, lets get 1 line commits as everyone says hello.\
 The simplest possible thing, to do.
 
-Then, we can have a mob programming meetup to further get everyone working together
+Then, we can have a mob programming meetups to further get everyone working together
 
 Next we will work on reducing the friction points, that will then allow us to handover to the next timezone, following the sun around the world.
 
