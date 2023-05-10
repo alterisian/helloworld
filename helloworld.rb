@@ -70,7 +70,12 @@ class Helloworld
 
   def output(handle="@alterisian")
     puts "--west_of tweet"
-    puts generate_tweet(west_of(handle), "Málaga, Spain")
+    if @geolocation
+      puts generate_tweet(west_of(handle), "Málaga, Spain")
+    else
+      # pick 3 people randomly
+      puts generate_tweet(pick_handles_randomly(3), "Málaga, Spain")
+    end
     puts "\n--availability tweet\n"
     puts "\ntweet:"+generate_availability_tweets[0]
     puts "\nreply:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
@@ -81,6 +86,7 @@ class Helloworld
   def west_of(handle)
     person = @everyone.find {|person| true if person.name==handle }
     if person
+      # byebug
       handle_longitutde = person.coordinates.last
     end
     @west_of=[]
@@ -91,6 +97,10 @@ class Helloworld
     end
 
     @west_of
+  end
+
+  def pick_handles_randomly(num_of_people)
+    @everyone.shuffle.first(num_of_people)
   end
 
   def generate_tweet(people_west_of, location)

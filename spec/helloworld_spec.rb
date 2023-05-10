@@ -69,6 +69,18 @@ describe Helloworld do
     end
   end
 
+  context '#pick_handles_randomly' do
+    it 'returns an array of length specified by the parameter' do
+      helloworld = Helloworld.new false
+      helloworld.say_hello("@theOnlyMaDDogx", "New Delhi, India")
+      helloworld.say_hello("@alterisian", "Málaga, Spain")
+      helloworld.say_hello("@bsilva96", "Machalí, Chile")
+      helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
+      
+      expect(helloworld.pick_handles_randomly(3).length).to eq 3
+    end
+  end
+
   context '#ask_availability' do
     it 'includes all the twitter handles in tweetable format' do
       VCR.use_cassette("includes_all_the_twitter_handles_in_tweetable_format") do
