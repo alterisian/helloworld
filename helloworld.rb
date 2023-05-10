@@ -35,15 +35,24 @@ class Helloworld
   TWEET_CHARACTER_LIMIT = 280
   @everyone = nil
   @geolocation = false
+  @twitter_api_key = nil
+  @run_type = nil
 
-  def initialize(geolocation=true, type="all", twitter_api_key=nil)
+  def initialize(geolocation=true, run_type="all", twitter_api_key=nil)
     @everyone = []
     @geolocation = geolocation
+    @run_type = run_type
+    @twitter_api_key = twitter_api_key
+    puts "we have the API_KEY from an Environment variable as: #{ENV['TWITTER_API_KEY']}"
+    @twitter_api_key = ENV['TWITTER_API_KEY']
     puts "#helloworld_rb - the global ruby mob"
     puts ""
     puts "Don't forget to bundle for geocoding!"
     puts "LETS GO..."
     puts "  "
+    puts "geolocation is #{@geolocation}"
+    puts "run_type is #{@run_type}"
+    puts "t: #{@twitter_api_key}"
   end
 
   def say_hello(handle, location)
@@ -63,8 +72,8 @@ class Helloworld
     puts "--west_of tweet"
     puts generate_tweet(west_of(handle), "Málaga, Spain")
     puts "\n--availability tweet\n"
-    puts "1:"+generate_availability_tweets[0]
-    puts "2:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
+    puts "\ntweet:"+generate_availability_tweets[0]
+    puts "\nreply:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
   end
 
   # Latitudes are horizontal lines that measure distance north or south of the equator
@@ -135,7 +144,10 @@ class Helloworld
 end
 
 if $0 == __FILE__
-  hi = Helloworld.new
+  # cmd line parameter handling.
+  # ruby helloworld geolocation flag, run_type, twitter_key
+  # ruby helloworld.rb false all AH456TTR
+  hi = Helloworld.new(ARGV[0], ARGV[1], ARGV[2])
 
   hi.say_hello("@alterisian", "Málaga, Spain")
   hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
@@ -157,5 +169,4 @@ if $0 == __FILE__
 
   # TODO - April - if new add a call above to hi.say_hello for yourself.
   # eg, Twitter handle and location
-
 end
