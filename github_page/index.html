@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>#helloworld_rb</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    #video-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    #video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff;
+      z-index: 2;
+    }
+    
+    #video-content {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <video id="video-background" autoplay loop muted>
+    <source src="" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  
+  <div id="video-content">
+    <h2>Welcome to #helloworld_rb</h2>
+  </div>
+
+  <div id="video-overlay">
+    <h1>A friendly platform for beginner ruby developers, and experts, to collaborate as an ensemble.</h1>
+    <p>
+      <a href="https://pitch.com/public/ae61effa-a1c5-4984-945c-c9e6fe2323f7/817b2596-998b-49e7-8cab-73174c3b1b7d" target="_blank">Want to learn more?</a>
+    </p>
+    <h2>Get involved</h2>
+    <p>
+      The simplest way to get involved is:
+      <ol>
+        <li>Add your twitter handle to the <a href="https://github.com/alterisian/helloworld/blob/main/helloworld.rb">helloworld.rb</a> file</li>
+        <li>Say when are you available this week?</li>
+        <li><a link="https://meet.jit.si/TodayM%C3%A1lagaTomorrowWeMake" target="_blank">Join the jitsi video chat</a></li>
+        <li><a link="https://mobti.me/TodayM%C3%A1lagaTomorrowWeMake" target="_blank">Add yourself to the mob timer</a></li>
+        <li>Start the codespace &amp; post the live share link into the jitsi video chat</li>
+      </ol>
+    </p>
+    <p>
+      We're also chatting with each other on Whatsapp, Linked, and a twitter group. So there's a medium for everyone.
+    </p>
+    <div id="footer">
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      Background video free from <a href=" https://coverr.co/videos/" target="_blank">Coverr.co</a>. <button id="stop-video-btn">Stop Video</button>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Array of video URLs
+      var videoUrls = [
+        'video/a_man_walks_into_his_home_office_coverr.mp4',
+        'video/two_office_workers_coverr.mp4'
+      ];
+
+      // Select a random video URL
+      var randomIndex = Math.floor(Math.random() * videoUrls.length);
+      var randomVideoUrl = videoUrls[randomIndex];
+
+      // Set the random video URL as the source for the video element
+      var videoElement = document.getElementById('video-background');
+      var sourceElement = videoElement.getElementsByTagName('source')[0];
+      sourceElement.src = randomVideoUrl;
+
+      // Load and play the video
+      videoElement.load();
+      videoElement.play();
+
+      // Button to stop/play the video
+      var stopVideoBtn = document.getElementById('stop-video-btn');
+      stopVideoBtn.addEventListener('click', function() {
+        if (videoElement.paused) {
+          // If video is paused, play it and update button label
+          videoElement.play();
+          stopVideoBtn.textContent = "Stop Video";
+        } else {
+          // If video is playing, pause it and update button label
+          videoElement.pause();
+          stopVideoBtn.textContent = "Play Video";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
