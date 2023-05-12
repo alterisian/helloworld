@@ -16,6 +16,8 @@ You can find more about the next meet at https://mobusoperandi.com/mobs/malaga.h
  - January - we got 6 contributors on GitLab
  - February - we got another 4 contributors on Github
  - March - we have had several mob programming sessions with people from India, Málaga, Germany, Brazil.
+ - April - we got a few new people in Dubai and Japapn, continued with regular mob sessions. 
+ - May - Continued mob sessions, and #helloworld_rb got presented to 20 people at Munich Rb meetup :)
 
 # Steps for mobbing
  - Go to the repository, https://github.com/alterisian/helloworld
