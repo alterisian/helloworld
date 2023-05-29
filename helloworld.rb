@@ -170,6 +170,7 @@ if $0 == __FILE__
   hi.say_hello("@j3nnn1", "Ciudad Autónoma de Buenos Aires, Argentina")
   hi.say_hello("@lamalotos", "Dubai, United Arab Emirates")
   hi.say_hello("@jtsococo", "Tokyo, Japan")
+  hi.say_hello("@pusewicz", "Benicarló, Spain")
   hi.output
 
   # TODO - April - if new add a call above to hi.say_hello for yourself.
