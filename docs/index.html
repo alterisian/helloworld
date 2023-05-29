@@ -9,6 +9,9 @@
       height: 100%;
       overflow: hidden;
     }
+    a {
+      color: white;
+    }
     
     #video-background {
       position: fixed;
@@ -32,10 +35,16 @@
     #get-involved {
       float: left;
       text-align:left;
-      background-color: gray;
+      background-color: white;
+      color: black;
       opacity: 0.5;
       margin: 10px;
-      padding: 10px;
+      padding:
+       10px;
+    }
+
+    #get-involved a {
+      color: black;
     }
     
     #video-content {
@@ -54,15 +63,16 @@
   </video>
   
   <div id="video-content">
-    <h2>Welcome to #helloworld_rb</h2>
   </div>
 
   <div id="video-overlay">
-    <h1>A friendly platform for beginner ruby developers, and experts, to collaborate as an ensemble.</h1>
+    <h2>Welcome to #helloworld_rb</h2>    
+    <h3>A friendly platform for beginner ruby developers, and experts, to collaborate as an ensemble.</h3>
+    <button id="stop-video-btn">Stop Video</button>
     <p>
       <a href="https://pitch.com/public/ae61effa-a1c5-4984-945c-c9e6fe2323f7/817b2596-998b-49e7-8cab-73174c3b1b7d" target="_blank">Want to learn more?</a>
     </p>
-    <h2>Get involved</h2>
+    <h2>Getting Involved</h2>
     <div id="get-involved">
       The simplest way to get involved is:
       <ol>
@@ -74,7 +84,8 @@
       </ol>
     </p>
     <p>
-      We're also chatting with each other on Whatsapp, Linked, and a twitter group. So there's a medium for everyone.
+      We're also chatting with each other on Whatsapp, Linked, and a <a href="https://twitter.com/hashtag/helloworld_rb?src=hashtag_click&f=live" target="_blank">twitter</a> hashtag and group. So there's a medium for everyone.
+      <br/>
       <br/>Our goal is for this to run continously, and for you to be able to join when you're available. With obvious benefit to more extended availability.
     </p>
     </div>
@@ -85,6 +96,22 @@
       <br/>
       Background video free from <a href=" https://coverr.co/videos/" target="_blank">Coverr.co</a>. <button id="stop-video-btn">Stop Video</button>
     </div>
+    
+    
+      <div id="page_2">     
+      <h2>Find out more about what the team likes on mob programming, ruby, and more... </h2>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLOduFTY42tWYL3XeatSp_nIkx86l3vQo5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>      
+      </iframe>
+<!-- 
+      <h2>Tweet the community via #helloworld_rb</h2>
+      <a href="https://twitter.com/intent/tweet?button_hashtag=helloworld_rb&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-show-count="false">Tweet #helloworld_rb</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8">        
+      </script>
+      <a href="https://twitter.com/hashtag/helloworld_rb?src=hashtag_click&f=live" target="_blank">See what the community has been saying at #helloworld_rb</a>
+-->      
+    </div>
+  
+
   </div>
 
   <script>
