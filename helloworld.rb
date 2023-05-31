@@ -193,6 +193,7 @@ if $0 == __FILE__
   hi.say_hello("@lamalotos", "Dubai, United Arab Emirates")
   hi.say_hello("@jtsococo", "Tokyo, Japan")
   hi.say_hello("@pusewicz", "Benicarló, Spain")
+  
   hi.output
   # TODO - New Joiner - if new add a call above to hi.say_hello for your twitter handle and location
 
