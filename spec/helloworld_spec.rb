@@ -108,6 +108,23 @@ describe Helloworld do
     end
   end
 
+  context '#all_tweets' do
+    it 'returns twitter urls for everyone, on a newline per handle' do
+      VCR.use_cassette("returns_twitter_urls_for_everyone") do
+        helloworld = Helloworld.new
+        helloworld.say_hello("@alterisian", "Málaga, Spain")
+        helloworld.say_hello("@esquinas", "Málaga, Spain")
+        helloworld.say_hello("@sidonath", "Málaga, Spain")
+        twitters = helloworld.all_tweets
+        puts "twitters: #{twitters}"
+        expect(helloworld.everyone.count).to eq(3)
+        expect(twitters.lines.count-1).to eq(3)
+        expect(twitters).to_not include('@')
+        expect(twitters).to include(Helloworld::TWITTER_BASE_URL)
+      end
+    end
+  end
+
   context '#in_timezone_of' do
     it 'returns people in the same timezone as that of a given person' do
       VCR.use_cassette("in_timezone_of_returns_people_in_the_same_timezone_as_that_of_a_given_person") do
