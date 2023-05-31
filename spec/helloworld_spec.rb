@@ -1,10 +1,5 @@
-require_relative "../helloworld.rb"
-require 'vcr'
-
-VCR.configure do |config|
-  config.cassette_library_dir = "fixtures/vcr_cassettes"
-  config.hook_into :webmock
-end
+require_relative './spec_helper'
+require_relative "../helloworld"
 
 describe Helloworld do
 
@@ -121,6 +116,38 @@ describe Helloworld do
         expect(tweet[0]).to include('@lucianghinda')
 
         expect(tweet[1]).to include('@j3nnn1')        
+      end
+    end
+  end
+
+  context '#all_tweets' do
+    it 'returns twitter urls for everyone, on a newline per handle' do
+      VCR.use_cassette("returns_twitter_urls_for_everyone") do
+        helloworld = Helloworld.new
+        helloworld.say_hello("@alterisian", "Málaga, Spain")
+        helloworld.say_hello("@esquinas", "Málaga, Spain")
+        helloworld.say_hello("@sidonath", "Málaga, Spain")
+        twitters = helloworld.all_tweets
+        puts "twitters: #{twitters}"
+        expect(helloworld.everyone.count).to eq(3)
+        expect(twitters.lines.count-1).to eq(3)
+        expect(twitters).to_not include('@')
+        expect(twitters).to include(Helloworld::TWITTER_BASE_URL)
+      end
+    end
+  end
+
+  context '#in_timezone_of' do
+    it 'returns people in the same timezone as that of a given person' do
+      VCR.use_cassette("in_timezone_of_returns_people_in_the_same_timezone_as_that_of_a_given_person") do
+        helloworld = Helloworld.new
+        helloworld.say_hello("@alterisian", "Málaga, Spain")
+        helloworld.say_hello("@esquinas", "Málaga, Spain")
+        helloworld.say_hello("@sidonath", "Málaga, Spain")
+        helloworld.say_hello("@lucianghinda", "Bucharest, Romania")
+        helloworld.say_hello("@theOnlyMaDDogx", "New Delhi, India")
+
+        expect(helloworld.in_timezone_of("@alterisian")).to eq(%w[@alterisian @esquinas @sidonath])
       end
     end
   end

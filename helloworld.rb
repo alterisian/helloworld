@@ -1,13 +1,23 @@
 # Goal: An active global group of rubyists working together
 
-# Usage: ruby helloworld.rb
+# Usage: bundle exec ruby helloworld.rb
+# Without geocoding: bundle exec ruby helloworld.rb false
+
+# Or use in the irb:
+# bundle exec irb
+# require_relative "./helloworld.rb"
+# hi = Helloworld.new
+# hi.say_hello("@alterisian", "Málaga, Spain")
+# hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
+# hi.output
+
 # Dependency: install ruby via https://www.ruby-lang.org
 
 # Process:
 #  * use github web editor to edit: https://github.com/alterisian/helloworld/blob/main/helloworld.rb
 #    (which will fork the github repo: https://github.com/alterisian/helloworld to your user's account)
-#  * add your line see bottom of helloworld.rb
-#  * eg, Twitter handle and location
+#  * add your twitter handle and location line to the bottom of helloworld.rb
+#  * 
 #  * create a commit "adding my name" and select the 'Create a new branch for this commit and start a pull request' option
 #  * observe Github Action run the script: ruby helloworld.rb
 
@@ -21,17 +31,22 @@
 # March. Maybe we can refactor so the output is split with everyone
 # listed, but the next 3 west of a handle are first? To be more tweetable.
 # April. Continue to include more people around the world, and work on handovers.
-#  - Consider introducing the hometown as an additional argument?
+# May - presented to Munich ruby group, and added new people from Brazil, and a github page.
 
-# Join the Málaga mob listed on: https://mobusoperandi.com/mobs/malaga.html
+# We are the Málaga mob listed on Mobusoperandi: https://mobusoperandi.com/mobs/malaga.html
+# Follow the instructions on our github page to get involved:
+# https://alterisian.github.io/helloworld
 
 require 'geocoder'
-require 'byebug'
+# require 'tzf'
 require_relative 'person'
 
 class Helloworld
+  attr_reader :everyone
+
   VIDEO_CHAT_URL = "https://meet.jit.si/TodayMálagaTomorrowWeMake".freeze
   AVAILABILITY_FORM_LINK = "https://forms.gle/TE7GuW2KNjEJLtLx7".freeze
+  TWITTER_BASE_URL = "https://twitter.com/".freeze
   TWEET_CHARACTER_LIMIT = 280
   @everyone = nil
   @geolocation = false
@@ -57,15 +72,22 @@ class Helloworld
 
   def say_hello(handle, location)
     if @geolocation
-      @everyone << Person.new(handle, location, get_coordinates(location) )
+      coordinates = get_coordinates(location)
+      timezone = get_timezone(coordinates)
+      @everyone << Person.new(handle, location, coordinates, timezone)
     else
-      @everyone << Person.new(handle, location, nil)
+      @everyone << Person.new(handle, location, nil, nil)
     end
   end
 
   def get_coordinates(location)
     results = Geocoder.search location
     results.first.coordinates
+  end
+
+  # @param [Array] coordinates
+  def get_timezone(coordinates)
+    # TZF.tz_name(*coordinates) # TODO -IM: replace with timeanddate.com
   end
 
   def output(handle="@alterisian")
@@ -81,8 +103,15 @@ class Helloworld
     puts "\nreply:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
   end
 
+  def all_tweets
+    twitter_handles = ""
+    @everyone.map { |person| twitter_handles+= "\n\r #{TWITTER_BASE_URL}#{person.name.gsub('@','')}" }
+    twitter_handles
+  end
+
   # Latitudes are horizontal lines that measure distance north or south of the equator
-  # Longitudes are vertical lines. Longitutde with a negative is western, positive is eastern
+  # Longitudes are vertical lines. 
+  # Longitutde with a negative is western, positive is eastern
   def west_of(handle)
     person = @everyone.find {|person| true if person.name==handle }
     if person
@@ -101,6 +130,15 @@ class Helloworld
 
   def pick_handles_randomly(num_of_people)
     @everyone.shuffle.first(num_of_people)
+  end
+
+  def in_timezone_of(handle)
+    person = @everyone.find { |person| person.name == handle }
+    if person
+      timezone = person.timezone
+    end
+    @everyone.filter { |person| person.timezone == timezone }
+             .map { |person| person.name }
   end
 
   def generate_tweet(people_west_of, location)
@@ -172,11 +210,12 @@ if $0 == __FILE__
   hi.say_hello("@twobbler", "Antwerp, Belgium")
   hi.say_hello("@amosdalmeri", "Brescia, Italy")
   hi.say_hello("@_jidemuritala", "Reus, Spain")
-  hi.say_hello("@mmiy55", "Osaka, Japan")
+  hi.say_hello("@Migreboo", "Osaka, Japan")
   hi.say_hello("@j3nnn1", "Ciudad Autónoma de Buenos Aires, Argentina")
-
+  hi.say_hello("@lamalotos", "Dubai, United Arab Emirates")
+  hi.say_hello("@jtsococo", "Tokyo, Japan")
+  hi.say_hello("@pusewicz", "Benicarló, Spain")
+  
   hi.output
-
-  # TODO - April - if new add a call above to hi.say_hello for yourself.
-  # eg, Twitter handle and location
+  # TODO - New Joiner - add a call above to hi.say_hello for your twitter handle and location
 end

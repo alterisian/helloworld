@@ -1,10 +1,10 @@
 # helloworld_rb
 
-Lets get the ruby world collaborating all around the world.\
+Lets get the ruby world collaborating all around the globe.\
 First, lets get 1 line commits as everyone says hello.\
 The simplest possible thing, to do.
 
-Then, we can have a mob programming meetup to further get everyone working together
+Then, we can have a mob programming meetups to further get everyone working together
 
 Next we will work on reducing the friction points, that will then allow us to handover to the next timezone, following the sun around the world.
 
@@ -16,6 +16,8 @@ You can find more about the next meet at https://mobusoperandi.com/mobs/malaga.h
  - January - we got 6 contributors on GitLab
  - February - we got another 4 contributors on Github
  - March - we have had several mob programming sessions with people from India, Málaga, Germany, Brazil.
+ - April - we got a few new people in Dubai and Japapn, continued with regular mob sessions. 
+ - May - Continued mob sessions, and #helloworld_rb got presented to 20 people at Munich Rb meetup :)
 
 # Steps for mobbing
  - Go to the repository, https://github.com/alterisian/helloworld
