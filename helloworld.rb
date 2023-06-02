@@ -50,15 +50,24 @@ class Helloworld
   TWEET_CHARACTER_LIMIT = 280
   @everyone = nil
   @geolocation = false
+  @twitter_api_key = nil
+  @run_type = nil
 
-  def initialize(geolocation=true)
+  def initialize(geolocation=true, run_type="all", twitter_api_key=nil)
     @everyone = []
     @geolocation = geolocation
+    @run_type = run_type
+    @twitter_api_key = twitter_api_key
+    puts "we have the API_KEY from an Environment variable as: #{ENV['TWITTER_API_KEY']}"
+    @twitter_api_key = ENV['TWITTER_API_KEY']
     puts "#helloworld_rb - the global ruby mob"
     puts ""
     puts "Don't forget to bundle for geocoding!"
     puts "LETS GO..."
     puts "  "
+    puts "geolocation is #{@geolocation}"
+    puts "run_type is #{@run_type}"
+    puts "t: #{@twitter_api_key}"
   end
 
   def say_hello(handle, location)
@@ -83,10 +92,15 @@ class Helloworld
 
   def output(handle="@alterisian")
     puts "--west_of tweet"
-    puts generate_tweet(west_of(handle), "Málaga, Spain")
-    puts "\n--availability tweet"
-    puts "1:"+generate_availability_tweets[0]
-    puts "2:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
+    if @geolocation
+      puts generate_tweet(west_of(handle), "Málaga, Spain")
+    else
+      # pick 3 people randomly
+      puts generate_tweet(pick_handles_randomly(3), "Málaga, Spain")
+    end
+    puts "\n--availability tweet\n"
+    puts "\ntweet:"+generate_availability_tweets[0]
+    puts "\nreply:"+generate_availability_tweets[1] unless generate_availability_tweets[1].nil?
   end
 
   def all_tweets
@@ -101,6 +115,7 @@ class Helloworld
   def west_of(handle)
     person = @everyone.find {|person| true if person.name==handle }
     if person
+      # byebug
       handle_longitutde = person.coordinates.last
     end
     @west_of=[]
@@ -111,6 +126,10 @@ class Helloworld
     end
 
     @west_of
+  end
+
+  def pick_handles_randomly(num_of_people)
+    @everyone.shuffle.first(num_of_people)
   end
 
   def in_timezone_of(handle)
@@ -173,7 +192,10 @@ class Helloworld
 end
 
 if $0 == __FILE__
-  hi = Helloworld.new
+  # cmd line parameter handling.
+  # ruby helloworld geolocation flag, run_type, twitter_key
+  # ruby helloworld.rb false all AH456TTR
+  hi = Helloworld.new(ARGV[0], ARGV[1], ARGV[2])
 
   hi.say_hello("@alterisian", "Málaga, Spain")
   hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
@@ -195,6 +217,5 @@ if $0 == __FILE__
   hi.say_hello("@pusewicz", "Benicarló, Spain")
   
   hi.output
-  # TODO - New Joiner - if new add a call above to hi.say_hello for your twitter handle and location
-
+  # TODO - New Joiner - add a call above to hi.say_hello for your twitter handle and location
 end
