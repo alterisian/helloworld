@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/utc.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/timezone.js"></script>
+
+  <link rel="stylesheet" href="availability.css">
+  <script src="availability.js"></script>
+</head>
+<body>
+  <script>
+    dayjs.extend(window.dayjs_plugin_utc);
+    dayjs.extend(window.dayjs_plugin_timezone);
+    
+    function dayjs_output() {
+      output = dayjs.tz.guess();
+      document.getElementById("timezone").innerHTML=output;
+    }
+  </script>
+  Your Timezone: <span id="timezone"></span><script>dayjs_output();</script>
+  <form method="POST" action="https://nocodeform.io/f/647f614322d2754aca3c1957" onsubmit="return extractAvailabilityData()">
+    <p>
+    <label for="name">Please enter your name:</label>
+    <input type="text" id="name" name="name" maxlength="20">
+    <br/><input type="submit" value="Submit availability">
+  </p>
+  </form>
+  <br/><button onclick="toggleEarly();">Toggle Early Times</button>
+  <table>
+    <tr>
+      <th>Day</th>
+      <th colspan="24">CEST (Central European Summer Time) (UTC + 2)</th>
+    </tr>
+    <tr>
+      <th></th>
+      <!--
+        // maybe we need a show_early() function
+      <th class="early">01:00</th>
+      <th class="early">02:00</th>
+      <th class="early">03:00</th>
+      <th class="early">04:00</th>
+      <th class="early">05:00</th>
+      <th class="early">06:00</th>      
+      <th class="early">07:00</th>
+      -->      
+      <th>08:00</th>
+      <th>09:00</th>
+      <th>10:00</th>
+      <th>11:00</th>
+      <th>12:00</th>
+      <th>13:00</th>
+      <th>14:00</th>
+      <th>15:00</th>
+      <th>16:00</th>
+      <th>17:00</th>
+      <th>18:00</th>
+      <th>19:00</th>
+<!--      
+      <th>20:00</th>
+      <th>21:00</th>
+      // TODO maybe we need a show_late() function
+      <th>22:00</th>
+      <th>23:00</th>
+      <th>00:00</th>
+-->      
+    </tr>
+<!--
+    <tr>
+      <th>Sunday</th>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="orange">2</td>
+      <td class="green">4</td>
+      <td class="empty"></td>
+      <td class="green">5</td>
+    </tr>
+-->    
+    <tr>
+      <th>Monday</th>
+      <td class="empty"></td>
+      <td class="orange">2</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="orange">1</td>
+      <td class="empty">3</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+    </tr>
+    <tr>
+      <th>Tuesday</th>
+      <td class="empty"></td>
+      <td class="orange">1</td>
+      <td class="orange">2</td>
+      <td class="green">3</td>
+      <td class="empty"></td>
+      <td class="orange">1</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+    </tr>
+    <tr>
+      <th>Wednesday</th>
+      <td class="empty"></td>
+      <td class="green">3</td>
+      <td class="orange">2</td>
+      <td class="green">3</td>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+    </tr>    
+    <tr>
+      <th>Thursday</th>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="orange">2</td>
+      <td class="green">4</td>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+    </tr>
+    <tr>
+      <th>Friday</th>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="orange">2</td>
+      <td class="green">4</td>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+    </tr>
+    <!-- maybe we need a show weekend function. Should Sunday be before Monday? Probably -->
+<!--
+    <tr>
+      <th>Saturday</th>
+      <td class="empty"></td>
+      <td class="green">5</td>
+      <td class="orange">2</td>
+      <td class="green">4</td>
+      <td class="empty"></td>
+      <td class="green">5</td>
+    </tr>
+-->    
+  </table>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      addEventListenersToCells();
+    });
+  </script>
+</body>
+</html>

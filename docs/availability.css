@@ -1,0 +1,32 @@
+table {
+  border: 1px solid grey;
+}
+
+th, td {
+  border: 1px solid white;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: azure;
+}
+
+td {
+  cursor: pointer; /* Add cursor style for clickable cells */
+}
+
+/* Set background color to orange for values of 1 and 2 i.e. some interest */
+td.orange {
+  background-color: orange;
+}
+
+/* Set background color to green for values of 3 or more. i.e. a valid mob */
+td.green {
+  background-color: green;
+}
+
+/* Set background color to white for empty/zero values */
+td.empty {
+  background-color: white;
+}
