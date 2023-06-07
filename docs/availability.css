@@ -37,15 +37,15 @@ td {
 
 /* Set background color to orange for values of 1 and 2 i.e. some interest */
 td.orange {
-  background-color: orange;
+  background-color: #FFD700;
 }
 
 /* Set background color to green for values of 3 or more. i.e. a valid mob */
 td.green {
-  background-color: green;
+  background-color: #90EE90;
 }
 
 /* Set background color to white for empty/zero values */
 td.empty {
-  background-color: white;
+  background-color: #F1F1F1;
 }
