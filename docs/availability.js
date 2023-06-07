@@ -5,11 +5,6 @@ function incrementValue(cell) {
   newValue = value + 1;
   cell.innerText = newValue;
   switch(newValue) {
-    case 0:
-    {
-      // no action needed
-      break;
-    }
     case 1:
     case 2:
     {
@@ -34,10 +29,11 @@ function extractAvailabilityData() {
   var availabilityData = {};
 
   console.log("extractAvailabilityData ")
-  if(!validateName()) return false; // Prevent form submission
+  if(!validateName()) return false; // Prevent form submission if no name
 
   rows.forEach(function(row, rowIndex) {
     var day = row.querySelector("th").innerText;
+    console.log("day="+day);
     var cells = row.querySelectorAll("td");
 
     availabilityData[day] = {};
@@ -69,21 +65,14 @@ function validateName() {
 function addEventListenersToCells() {
   var cells = document.querySelectorAll("td");
   cells.forEach(function(cell) {
-    cell.addEventListener("click", function() {
-      // if (!validateName()) {
-      //   return;
-      // }
+    cell.addEventListener("click", function() {      
       incrementValue(cell);
     });
   });
 }
 
-function toggleEarly() {  
-  var thElements = document.querySelectorAll("th.early");
-
-  console.log("toggleEarly called");
-
-  thElements.forEach(function(th) {
+function toggleTableHeaderGroupVisibility(thGroup) {
+  thGroup.forEach(function(th) {
     var columnIndex = th.cellIndex;
     var table = th.closest("table");
     var rows = table.querySelectorAll("tr");
@@ -100,7 +89,51 @@ function toggleEarly() {
         }
       }
     });
+
+    if (th.style.display === "none")
+    { 
+      th.style.display="";      
+    }
+    else
+    {
+      th.style.display="none";
+    }
   });
+}
+
+function toggleTableRowGroupVisibility(trGroup) { 
+  var rows = document.querySelectorAll("tr");
+
+  rows.forEach(function(row) {
+    var th = row.querySelector("th.weekend");
+    if (th) {
+      var cells = row.querySelectorAll("td");
+
+      cells.forEach(function(cell) {
+        if (cell.style.display === "none") {
+          cell.style.display = ""; // Show the cell
+        } else {
+          cell.style.display = "none"; // Hide the cell
+        }
+      });
+
+      if (th.style.display === "none") {
+        th.style.display = ""; // Show the <th> element
+      } else {
+        th.style.display = "none"; // Hide the <th> element
+      }
+    }
+  });
+}
+
+function toggleOutsideCoreHours() {  
+  var thEarlyElements = document.querySelectorAll("th.early");
+  var thLateElements = document.querySelectorAll("th.late");
+  var trWeekendElements = document.querySelectorAll("tr.weekend");
+
+  toggleTableHeaderGroupVisibility(thEarlyElements);
+  toggleTableHeaderGroupVisibility(thLateElements);
+  //toggleTableRowGroupVisibility(trWeekendElements);
 }
 
 

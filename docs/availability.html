@@ -9,6 +9,11 @@
   <script src="availability.js"></script>
 </head>
 <body>
+  <h1>#helloworld_rb week ahead availability</h1>
+  <p>
+    We believe you're most productive working the hours that your prefer.
+    With collaboration we can make it possible to join our ensemble anytime you have available.
+  </p>
   <script>
     dayjs.extend(window.dayjs_plugin_utc);
     dayjs.extend(window.dayjs_plugin_timezone);
@@ -26,7 +31,8 @@
     <br/><input type="submit" value="Submit availability">
   </p>
   </form>
-  <br/><button onclick="toggleEarly();">Toggle Early Times</button>
+  <br/><button onclick="toggleOutsideCoreHours();">Toggle NonCore Times</button>
+  <br/>
   <table>
     <tr>
       <th>Day</th>
@@ -34,16 +40,13 @@
     </tr>
     <tr>
       <th></th>
-      <!--
-        // maybe we need a show_early() function
       <th class="early">01:00</th>
       <th class="early">02:00</th>
       <th class="early">03:00</th>
       <th class="early">04:00</th>
       <th class="early">05:00</th>
       <th class="early">06:00</th>      
-      <th class="early">07:00</th>
-      -->      
+      <th class="early">07:00</th>  
       <th>08:00</th>
       <th>09:00</th>
       <th>10:00</th>
@@ -56,26 +59,41 @@
       <th>17:00</th>
       <th>18:00</th>
       <th>19:00</th>
-<!--      
-      <th>20:00</th>
-      <th>21:00</th>
-      // TODO maybe we need a show_late() function
-      <th>22:00</th>
-      <th>23:00</th>
-      <th>00:00</th>
--->      
+      <th class="late">20:00</th>
+      <th class="late">21:00</th>
+      <th class="late">22:00</th>
+      <th class="late">23:00</th>
+      <th class="late">00:00</th>   
     </tr>
-<!--
+
     <tr>
-      <th>Sunday</th>
+      <th class="weekend">Sunday</th>
       <td class="empty"></td>
       <td class="green">5</td>
       <td class="orange">2</td>
       <td class="green">4</td>
       <td class="empty"></td>
       <td class="green">5</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
     </tr>
--->    
+
     <tr>
       <th>Monday</th>
       <td class="empty"></td>
@@ -83,7 +101,19 @@
       <td class="empty"></td>
       <td class="empty"></td>
       <td class="orange">1</td>
-      <td class="empty">3</td>
+      <td class="green">3</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
@@ -105,6 +135,18 @@
       <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
     </tr>
     <tr>
       <th>Wednesday</th>
@@ -114,6 +156,18 @@
       <td class="green">3</td>
       <td class="empty"></td>
       <td class="green">5</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
@@ -135,6 +189,18 @@
       <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
     </tr>
     <tr>
       <th>Friday</th>
@@ -150,19 +216,48 @@
       <td class="empty"></td>
       <td class="empty"></td>
       <td class="empty"></td>
+
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
     </tr>
-    <!-- maybe we need a show weekend function. Should Sunday be before Monday? Probably -->
-<!--
+
     <tr>
-      <th>Saturday</th>
+      <th class="weekend">Saturday</th>
       <td class="empty"></td>
       <td class="green">5</td>
       <td class="orange">2</td>
       <td class="green">4</td>
       <td class="empty"></td>
       <td class="green">5</td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
+      <td class="empty"></td>
     </tr>
--->    
   </table>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
