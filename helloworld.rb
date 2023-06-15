@@ -37,6 +37,7 @@
 # Follow the instructions on our github page to get involved:
 # https://alterisian.github.io/helloworld
 
+require 'optparse'
 require 'geocoder'
 # require 'tzf'
 require_relative 'person'
@@ -58,8 +59,7 @@ class Helloworld
     @geolocation = geolocation
     @run_type = run_type
     @twitter_api_key = twitter_api_key
-    puts "we have the API_KEY from an Environment variable as: #{ENV['TWITTER_API_KEY']}"
-    @twitter_api_key = ENV['TWITTER_API_KEY']
+
     puts "#helloworld_rb - the global ruby mob"
     puts ""
     puts "Don't forget to bundle for geocoding!"
@@ -193,9 +193,39 @@ end
 
 if $0 == __FILE__
   # cmd line parameter handling.
+
+  options = {
+    
+  }
+  OptionParser.new do |opts|
+    opts.banner = "Usage: helloworld.rb [options]"
+  
+    opts.on("--geolocation", "Run with geolocation") do |g|
+      options[:geolocation] = g
+    end
+
+    opts.on("-rall", "--run_type=all", "Run type report i.e. all") do |rt|
+      options[:run_type] = rt
+    end
+
+    # use the environment variable for the twitter api key  
+    # unless it doesn't exist, then use passed in parameter
+    opts.on("-t", "--twitter-key", "twitter api key") do |tk|
+      options[:twitter_key] = ENV.fetch('TWITTER_API_KEY') do
+        tk
+      end
+    end
+
+  end.parse!
+  
+  p options
+  p ARGV
+
   # ruby helloworld geolocation flag, run_type, twitter_key
   # ruby helloworld.rb false all AH456TTR
-  hi = Helloworld.new(ARGV[0], ARGV[1], ARGV[2])
+  hi = Helloworld.new(options[:geolocation], options[:run_type], options[:twitter_key])
+
+  puts "Fetching coordinates...."
 
   hi.say_hello("@alterisian", "Málaga, Spain")
   hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
