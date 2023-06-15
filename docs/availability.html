@@ -25,15 +25,17 @@
     }
   </script>
   Your Timezone: <span id="timezone"></span><script>dayjs_output();</script>
-  <form method="POST" action="https://nocodeform.io/f/647f614322d2754aca3c1957" onsubmit="return extractAvailabilityData()">
+  <form method="POST" action="https://nocodeform.io/f/647f614322d2754aca3c1957" onsubmit="return extractAvailabilityData();">
     <p>
-    <label for="name">Please enter your name:</label>
-    <input type="text" id="name" name="name" maxlength="20">
-    <br/><input type="submit" value="Submit availability">
-  </p>
+      <label for="name">Please enter your name:</label>
+      <input type="text" id="name" name="name" maxlength="20">
+      <br/><input type="submit" value="Submit availability">
+    </p>
   </form>
+
   <br/><button onclick="toggleOutsideCoreHours();">Toggle NonCore Times</button>
   <br/>
+
   <table>
     <tr>
       <th>Day</th>
@@ -67,7 +69,7 @@
       <th class="late">00:00</th>   
     </tr>
 
-    <tr>
+    <tr class="weekend_row">
       <th class="weekend">Sunday</th>
       <td class="empty"></td>
       <td class="green">5</td>
@@ -232,7 +234,7 @@
       <td class="empty"></td>
     </tr>
 
-    <tr>
+    <tr class="weekend_row">
       <th class="weekend">Saturday</th>
       <td class="empty"></td>
       <td class="green">5</td>

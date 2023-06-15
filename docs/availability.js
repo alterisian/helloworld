@@ -102,26 +102,13 @@ function toggleTableHeaderGroupVisibility(thGroup) {
 }
 
 function toggleTableRowGroupVisibility(trGroup) { 
-  var rows = document.querySelectorAll("tr");
+  var rows = document.querySelectorAll("tr.weekend_row");
 
   rows.forEach(function(row) {
-    var th = row.querySelector("th.weekend");
-    if (th) {
-      var cells = row.querySelectorAll("td");
-
-      cells.forEach(function(cell) {
-        if (cell.style.display === "none") {
-          cell.style.display = ""; // Show the cell
-        } else {
-          cell.style.display = "none"; // Hide the cell
-        }
-      });
-
-      if (th.style.display === "none") {
-        th.style.display = ""; // Show the <th> element
-      } else {
-        th.style.display = "none"; // Hide the <th> element
-      }
+    if (row.style.display === "none") {
+      row.style.display = "table-row"; // Show the row
+    } else {
+      row.style.display = "none"; // Hide the row
     }
   });
 }
@@ -133,7 +120,7 @@ function toggleOutsideCoreHours() {
 
   toggleTableHeaderGroupVisibility(thEarlyElements);
   toggleTableHeaderGroupVisibility(thLateElements);
-  //toggleTableRowGroupVisibility(trWeekendElements);
+  toggleTableRowGroupVisibility(trWeekendElements);
 }
 
 
