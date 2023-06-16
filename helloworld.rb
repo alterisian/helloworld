@@ -62,12 +62,39 @@ class Helloworld
 
     puts "#helloworld_rb - the global ruby mob"
     puts ""
-    puts "Don't forget to bundle for geocoding!"
     puts "LETS GO..."
-    puts "  "
+    puts ""
     puts "geolocation is #{@geolocation}"
     puts "run_type is #{@run_type}"
-    puts "t: #{@twitter_api_key}"
+    puts "twitter API key present: #{!@twitter_api_key.empty?}"
+
+    puts "Fetching coordinates...."
+  end
+
+  def self.parse_options
+    options = {
+      geolocation: true,
+      twitter_key: ENV['TWITTER_API_KEY']
+    }
+    OptionParser.new do |opts|
+      opts.banner = "Usage: helloworld.rb [options]. For help use -h."
+    
+      opts.on("--[no-]geolocation", "Run with/without geolocation") do |g|
+        options[:geolocation] = g
+      end
+  
+      opts.on("-rall", "--run_type=all", "Run type report i.e. all") do |rt|
+        options[:run_type] = rt
+      end
+  
+      # use the environment variable for the twitter api key  
+      # unless it doesn't exist, then use passed in parameter
+      opts.on("-t KEY", "--twitter-key KEY", "twitter api key") do |tk|
+        options[:twitter_key] = tk
+      end
+    end.parse!
+
+    options
   end
 
   def say_hello(handle, location)
@@ -193,40 +220,11 @@ end
 
 if $0 == __FILE__
   # cmd line parameter handling.
+  options = Helloworld.parse_options
 
-  options = {
-    
-  }
-  OptionParser.new do |opts|
-    opts.banner = "Usage: helloworld.rb [options]"
-  
-    opts.on("--geolocation", "Run with geolocation") do |g|
-      options[:geolocation] = g
-    end
-
-    opts.on("-rall", "--run_type=all", "Run type report i.e. all") do |rt|
-      options[:run_type] = rt
-    end
-
-    # use the environment variable for the twitter api key  
-    # unless it doesn't exist, then use passed in parameter
-    opts.on("-t", "--twitter-key", "twitter api key") do |tk|
-      options[:twitter_key] = ENV.fetch('TWITTER_API_KEY') do
-        tk
-      end
-    end
-
-  end.parse!
-  
-  p options
-  p ARGV
-
-  # ruby helloworld geolocation flag, run_type, twitter_key
-  # ruby helloworld.rb false all AH456TTR
+  # bundle exec ruby helloworld.rb --geolocation -rall
   hi = Helloworld.new(options[:geolocation], options[:run_type], options[:twitter_key])
-
-  puts "Fetching coordinates...."
-
+  
   hi.say_hello("@alterisian", "Málaga, Spain")
   hi.say_hello("@CelsoDeSa", "Barra Velha, Brazil")
   hi.say_hello("@lucianghinda", "Bucharest, Romania")
